@@ -1,0 +1,10 @@
+build-number.txt
+dependency-reduced-pom.xml
+target
+.checkstyle
+.class
+.classpath
+.cvsignore
+.pmd
+.project
+.settings
