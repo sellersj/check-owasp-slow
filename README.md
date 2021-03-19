@@ -7,6 +7,49 @@ Curently looking at https://github.com/jeremylong/DependencyCheck/issues/3183
 Run the script run-test.sh
 It has a commented out purge of the data directories. Consider running those.
 
+### After running it, connect to h2.
+Start the server with `java -jar ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar`
+Go to `http://localhost:8082/`
+Put in
+Driver: org.h2.Driver
+Location: jdbc:h2:file:~/.m2/repository/org/owasp/dependency-check-data/5.0/odc
+Username: dcuser
+Password: DC-Pass1337!
+
+See core/src/main/resources/dependencycheck.properties
+
+### Check the query in question
+Run `EXPLAIN ANALYZE` on the query. In this case with a dummy value:
+```
+SELECT DISTINCT VENDOR, PRODUCT FROM CPEENTRY WHERE PART='a' AND ((REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob'))
+```
+
+Result is
+```
+SELECT DISTINCT
+    "VENDOR",
+    "PRODUCT"
+FROM "PUBLIC"."CPEENTRY"
+    /* PUBLIC.IDXCPEENTRY: PART = 'a' */
+    /* scanCount: 209373 */
+WHERE ("PART" = 'a')
+    AND ((((REPLACE("VENDOR", '-', '_') = 'bob')
+    AND (REPLACE("PRODUCT", '-', '_') = 'bob'))
+    AND (REPLACE("VENDOR", '-', '_') = REPLACE("PRODUCT", '-', '_')))
+    OR ((((REPLACE("VENDOR", '-', '_') = 'bob')
+    AND (REPLACE("PRODUCT", '-', '_') = 'bob'))
+    AND (REPLACE("VENDOR", '-', '_') = REPLACE("PRODUCT", '-', '_')))
+    OR (((REPLACE("VENDOR", '-', '_') = REPLACE("PRODUCT", '-', '_'))
+    OR (REPLACE("VENDOR", '-', '_') = REPLACE("PRODUCT", '-', '_')))
+    AND (((REPLACE("VENDOR", '-', '_') = 'bob')
+    AND (REPLACE("PRODUCT", '-', '_') = 'bob'))
+    AND (REPLACE("VENDOR", '-', '_') = REPLACE("PRODUCT", '-', '_'))))))
+/*
+reads: 5663
+*/
+```
+
+
 ## Original issue fixed in 6.0.3
 This was fixed in 6.0.3 with [PR 2862](https://github.com/jeremylong/DependencyCheck/pull/2862)
 
