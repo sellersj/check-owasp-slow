@@ -18,7 +18,7 @@ Password: DC-Pass1337!
 
 See core/src/main/resources/dependencycheck.properties
 
-### Check the query in question
+## Slow query fixed in 6.1.3
 Run `EXPLAIN ANALYZE` on the query. In this case with a dummy value:
 ```
 SELECT DISTINCT VENDOR, PRODUCT FROM CPEENTRY WHERE PART='a' AND ((REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob'))
