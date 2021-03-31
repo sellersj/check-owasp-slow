@@ -1,7 +1,7 @@
 # For figuring out an issue when updating owasp
 
 ## Currently used to look at performance issues
-Currently looking at https://github.com/jeremylong/DependencyCheck/issues/3249
+Currently looking at no issues
 
 ## Setup
 Run the script run-test.sh
@@ -19,6 +19,9 @@ Password: DC-Pass1337!
 See core/src/main/resources/dependencycheck.properties
 
 ## Resolved issues
+
+### NullPointerException for some artifacts fixed in 6.1.5
+https://github.com/jeremylong/DependencyCheck/issues/3249
 
 ### Slow query fixed in 6.1.3
 https://github.com/jeremylong/DependencyCheck/issues/3183
