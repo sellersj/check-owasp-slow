@@ -20,10 +20,9 @@ See core/src/main/resources/dependencycheck.properties
 
 ## Resolved issues
 
-### Performance issues due to sql REPLACE function used in where clause fixed in 6.1.4
-Curently looking at https://github.com/jeremylong/DependencyCheck/issues/3183
-
 ### Slow query fixed in 6.1.3
+https://github.com/jeremylong/DependencyCheck/issues/3183
+
 Run `EXPLAIN ANALYZE` on the query. In this case with a dummy value:
 ```
 SELECT DISTINCT VENDOR, PRODUCT FROM CPEENTRY WHERE PART='a' AND ((REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob'))
