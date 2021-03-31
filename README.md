@@ -1,13 +1,13 @@
 # For figuring out an issue when updating owasp
 
 ## Currently used to look at performance issues
-Curently looking at https://github.com/jeremylong/DependencyCheck/issues/3183
+Currently looking at https://github.com/jeremylong/DependencyCheck/issues/3249
 
 ## Setup
 Run the script run-test.sh
 It has a commented out purge of the data directories. Consider running those.
 
-### After running it, connect to h2.
+### How to check issues with h2
 Start the server with `java -jar ~/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar`
 Go to `http://localhost:8082/`
 Put in
@@ -18,7 +18,12 @@ Password: DC-Pass1337!
 
 See core/src/main/resources/dependencycheck.properties
 
-## Slow query fixed in 6.1.3
+## Resolved issues
+
+### Performance issues due to sql REPLACE function used in where clause fixed in 6.1.4
+Curently looking at https://github.com/jeremylong/DependencyCheck/issues/3183
+
+### Slow query fixed in 6.1.3
 Run `EXPLAIN ANALYZE` on the query. In this case with a dummy value:
 ```
 SELECT DISTINCT VENDOR, PRODUCT FROM CPEENTRY WHERE PART='a' AND ((REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob') OR (REPLACE(VENDOR,'-','_')='bob' AND REPLACE(PRODUCT,'-','_')='bob'))
@@ -50,7 +55,7 @@ reads: 5663
 ```
 
 
-## Original issue fixed in 6.0.3
+### Original issue fixed in 6.0.3
 This was fixed in 6.0.3 with [PR 2862](https://github.com/jeremylong/DependencyCheck/pull/2862)
 
 If someone needs a work around, it can be like
