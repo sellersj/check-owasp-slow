@@ -229,6 +229,7 @@
     <module>moduleG</module>
     <module>moduleH</module>
     <module>moduleI</module>
+    <module>issue3249</module>
   </modules>
 
 </project>
