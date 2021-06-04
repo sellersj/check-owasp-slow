@@ -1,7 +1,8 @@
 # For figuring out an issue when updating owasp
 
 ## Currently used to look at performance issues
-Currently looking at no issues
+Currently looking at:
+https://github.com/jeremylong/DependencyCheck/issues/3408
 
 ## Setup
 Run the script run-test.sh
