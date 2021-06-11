@@ -1,8 +1,8 @@
 # For figuring out an issue when updating owasp
 
 ## Currently used to look at performance issues
-Currently looking at:
-https://github.com/jeremylong/DependencyCheck/issues/3408
+Currently looking at no issues currently
+
 
 ## Setup
 Run the script run-test.sh
@@ -20,6 +20,9 @@ Password: DC-Pass1337!
 See core/src/main/resources/dependencycheck.properties
 
 ## Resolved issues
+
+### Database pool exhaustion
+https://github.com/jeremylong/DependencyCheck/issues/3408
 
 ### NullPointerException for some artifacts fixed in 6.1.5
 https://github.com/jeremylong/DependencyCheck/issues/3249
