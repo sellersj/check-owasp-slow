@@ -232,4 +232,35 @@
     <module>issue3249</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>validate-html</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>nu.validator</groupId>
+            <artifactId>vnu-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>validate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>${project.build.directory}</directory>
+                  <glob>**.html</glob>
+                </fileset>
+              </filesets>
+              <!-- <validator>...</validator> -->
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
