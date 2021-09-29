@@ -7,8 +7,8 @@ OLDVERSION=6.3.1
 NEWVERSION=6.3.2
 
 # purge the repo
-mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
-mvn org.owasp:dependency-check-maven:$NEWVERSION:purge
+# mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
+# mvn org.owasp:dependency-check-maven:$NEWVERSION:purge
 
 # update the repo
 mvn org.owasp:dependency-check-maven:$OLDVERSION:update-only
