@@ -3,16 +3,16 @@
 # exit if any of the commands return an error
 set -e
 
-OLDVERSION=6.3.1
-NEWVERSION=6.3.2
+OLDVERSION=6.3.2
+NEWVERSION=6.4.1
 
 # purge the repo
 # mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
 # mvn org.owasp:dependency-check-maven:$NEWVERSION:purge
 
 # update the repo
-mvn org.owasp:dependency-check-maven:$OLDVERSION:update-only
-mvn org.owasp:dependency-check-maven:$NEWVERSION:update-only
+# mvn org.owasp:dependency-check-maven:$OLDVERSION:update-only
+# mvn org.owasp:dependency-check-maven:$NEWVERSION:update-only
 
 # run the tests
 mvn -X -B org.owasp:dependency-check-maven:$OLDVERSION:check org.owasp:dependency-check-maven:$OLDVERSION:aggregate \
