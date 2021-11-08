@@ -3,8 +3,8 @@
 # exit if any of the commands return an error
 set -e
 
-OLDVERSION=6.3.2
-NEWVERSION=6.4.1
+OLDVERSION=6.4.1
+NEWVERSION=6.5.0
 
 # purge the repo
 # mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
@@ -19,7 +19,7 @@ mvn -X -B org.owasp:dependency-check-maven:$OLDVERSION:check org.owasp:dependenc
   -Dformat=ALL -DskipProvidedScope=true -DautoUpdate=false -DnuspecAnalyzerEnabled=false \
   -DassemblyAnalyzerEnabled=false -DnodeAuditAnalyzerEnabled=false -DnodeAnalyzerEnabled=false \
   -DrubygemsAnalyzerEnabled=false -DbundleAuditAnalyzerEnabled=false > $OLDVERSION.log
-  
+
 mvn -X -B org.owasp:dependency-check-maven:$NEWVERSION:check org.owasp:dependency-check-maven:$NEWVERSION:aggregate \
   -Dformat=ALL -DskipProvidedScope=true -DautoUpdate=false -DnuspecAnalyzerEnabled=false \
   -DassemblyAnalyzerEnabled=false -DnodeAuditAnalyzerEnabled=false -DnodeAnalyzerEnabled=false \
