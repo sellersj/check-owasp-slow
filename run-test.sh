@@ -3,8 +3,8 @@
 # exit if any of the commands return an error
 set -e
 
-OLDVERSION=6.4.1
-NEWVERSION=6.5.1
+OLDVERSION=6.5.1
+NEWVERSION=6.5.2
 
 # purge the repo
 # mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
