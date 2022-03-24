@@ -4,7 +4,7 @@
 set -e
 
 OLDVERSION=6.5.3
-NEWVERSION=7.0.0
+NEWVERSION=7.0.1
 
 # purge and reupdate the repo for the old version
 mvn org.owasp:dependency-check-maven:$OLDVERSION:purge
